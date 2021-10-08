@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Web3 from 'web3'
 import { useState, useEffect } from 'react'
 import { abi, contractAddress } from '../constants/abi';
-import { Button, Container, Row, Col, Table, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, Container, Row, Col, Table, InputGroup, FormControl, Image } from 'react-bootstrap';
 
 export default function Home() {
 
@@ -67,8 +67,11 @@ export default function Home() {
       <main>
         <Container>
           <Row>
-            <Col>
+            <Col className="align-self-center" xs="6">
               <h1>Hello World Voting!</h1>
+            </Col>
+            <Col xs={{ span: 3, offset: 2 }}>
+              <Image fluid src="/Racoon-and-doge.png" alt="logo" />
             </Col>
           </Row>
           <Row>
@@ -78,23 +81,24 @@ export default function Home() {
                   defaultValue="New Hello World"
                   id="newInput"
                 />
-                <Button onClick={() => createHello(document.getElementById('newInput').value)} variant="outline-secondary">
+                <Button onClick={() => createHello(document.getElementById('newInput').value)} variant="cute">
                   Create new!
                 </Button>
               </InputGroup>
             </Col>
             <Col md="6" className="text-end">
-              <Button onClick={() => getHelloListing(contract)}>Refresh</Button>
+              <Button variant="cute" onClick={() => getHelloListing(contract)}>Refresh</Button>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Table striped bordered hover>
+              <Table variant="dark" striped bordered hover>
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>Message</th>
                     <th>Votes</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,7 +107,7 @@ export default function Home() {
                       <td>{i + 1}</td>
                       <td>{data[0]}</td>
                       <td>{data[1]}</td>
-                      <td><Button onClick={() => voteHello(i)}>Vote!</Button></td>
+                      <td className="text-center"><Button variant="cute" onClick={() => voteHello(i)}>Vote!</Button></td>
                     </tr>
                   )) : <tr></tr>}
                 </tbody>
@@ -112,9 +116,6 @@ export default function Home() {
           </Row>
         </Container>
       </main>
-
-      <footer>
-      </footer>
     </div>
   )
 }

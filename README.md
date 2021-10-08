@@ -1,5 +1,6 @@
 # Simple eth polling system
 
+![screenshot](http://i.epvpimg.com/fOyTeab.png)
 This app is a app I've wrote for learning purposes. It connects to a smart contract written in solidity, pushed on the ropsten testnet. You can basically create a "Hello World"-String and vote for it or other strings. 
 
 

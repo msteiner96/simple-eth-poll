@@ -20,10 +20,10 @@ export default function Home() {
     window.ethereum ?
       ethereum.request({ method: "eth_requestAccounts" }).then((accounts) => {
         setAddress(accounts[0])
-        let w3 = new Web3(ethereum)
-        let c = new w3.eth.Contract(abi, contractAddress)
-        setContract(c)
+        const w3 = new Web3(ethereum)
+        const c = new w3.eth.Contract(abi, contractAddress)
         getHelloListing(c)
+        setContract(c)
         // Else throw error
       }).catch((err) => console.log(err))
       : console.log("Please install MetaMask")
@@ -47,7 +47,6 @@ export default function Home() {
    * Get all submited hellos including their votings
    */
   function getHelloListing(c) {
-    c = c ?? contract
     c.methods.GetHelloListing().call().then(result => setAllHellos(result))
   }
 
@@ -56,7 +55,6 @@ export default function Home() {
    */
   function voteHello(hello) {
     contract.methods.VoteHello(hello).send({ from: address })
-    getHelloListing();
   }
 
   // Markup
@@ -78,9 +76,9 @@ export default function Home() {
               <InputGroup className="mb-3">
                 <FormControl
                   defaultValue="New Hello World"
-                  id="test"
+                  id="newInput"
                 />
-                <Button onClick={() => createHello(document.getElementById('test').value)} variant="outline-secondary">
+                <Button onClick={() => createHello(document.getElementById('newInput').value)} variant="outline-secondary">
                   Create new!
                 </Button>
               </InputGroup>

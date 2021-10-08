@@ -79,8 +79,8 @@ export default function Home() {
                 Create new!
               </Button>
             </InputGroup>
-            </Row>
-            <Row>
+          </Row>
+          <Row>
             <Table striped bordered hover>
               <thead>
                 <tr>

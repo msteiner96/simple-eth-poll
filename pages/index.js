@@ -69,37 +69,48 @@ export default function Home() {
       <main>
         <Container>
           <Row>
-            <h1>Hello World Voting!</h1>
-            <InputGroup className="mb-3">
-              <FormControl
-                defaultValue="New Hello World"
-                id="test"
-              />
-              <Button onClick={() => createHello(document.getElementById('test').value)} variant="outline-secondary">
-                Create new!
-              </Button>
-            </InputGroup>
+            <Col>
+              <h1>Hello World Voting!</h1>
+            </Col>
           </Row>
           <Row>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Message</th>
-                  <th>Votes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {allHellos ? allHellos.map((data, i) => (
-                  <tr key={i}>
-                    <td>{i + 1}</td>
-                    <td>{data[0]}</td>
-                    <td>{data[1]}</td>
-                    <td><Button onClick={() => voteHello(i)}>Vote!</Button></td>
+            <Col md="6">
+              <InputGroup className="mb-3">
+                <FormControl
+                  defaultValue="New Hello World"
+                  id="test"
+                />
+                <Button onClick={() => createHello(document.getElementById('test').value)} variant="outline-secondary">
+                  Create new!
+                </Button>
+              </InputGroup>
+            </Col>
+            <Col md="6" className="text-end">
+              <Button onClick={() => getHelloListing(contract)}>Refresh</Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Message</th>
+                    <th>Votes</th>
                   </tr>
-                )) : <tr></tr>}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {allHellos ? allHellos.map((data, i) => (
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{data[0]}</td>
+                      <td>{data[1]}</td>
+                      <td><Button onClick={() => voteHello(i)}>Vote!</Button></td>
+                    </tr>
+                  )) : <tr></tr>}
+                </tbody>
+              </Table>
+            </Col>
           </Row>
         </Container>
       </main>
